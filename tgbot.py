@@ -2,6 +2,7 @@ import config
 from pymongo.errors import ConnectionFailure
 from pymongo import MongoClient
 import traceback
+import telegram
 
 mongo_client = None
 
@@ -75,6 +76,12 @@ def push_notification(bot, content):
 		users = collection.find({})
 		content = content.strip("\n")
 		for user in users:
-			bot.send_message(user["tgid"], content, timeout = 10, parse_mode = "HTML")
+			try:
+				bot.send_message(user["tgid"], content, timeout = 10, parse_mode = "HTML")
+			except telegram.error.Unauthorized:
+				collection.delete_one({"tgid": user["tgid"]})
+				config.log("Removed blocking user: %s"%user["tgid"])
+			except:
+				pass
 	except:
 		print(traceback.format_exc())

@@ -1,12 +1,17 @@
 import getpass, time, datetime, pytz
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-stdi", action = "store_true")
+args = parser.parse_args()
 try:
 	USERNAME = input("Username: ")
-	PASSWORD = getpass.getpass("Password: ")
+	PASSWORD = getpass.getpass("Password: ") if not args.stdi else input("Password: ")
 	TG_TOKEN = input("Telegram bot token: ")
 	DB_HOST = "localhost:27017"
 	DB_USERNAME = input("MongoDB username: ")
-	DB_PASSWORD = getpass.getpass("MongoDB password: ")
+	DB_PASSWORD = getpass.getpass("MongoDB password: ") if not args.stdi else input("MongoDB assword: ")
+	print()
 except:
 	print("\nPlease complete the configuration")
 	exit(-1)

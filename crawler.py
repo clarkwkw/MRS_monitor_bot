@@ -102,6 +102,7 @@ def list_studies(opener):
 	return studies
 
 def check_availability(opener, study_id):
+	return True
 	header = dict(config.GENERAL_HEADER)
 	header["referer"] = config.REFERER["AVAILABILITY"] + study_id
 	opener.addheaders = list(header.items())
