@@ -5,8 +5,8 @@ try:
 	PASSWORD = getpass.getpass("Password: ")
 	TG_TOKEN = input("Telegram bot token: ")
 	DB_HOST = "localhost:27017"
-	DB_USERNAME = input("MongoDB username:")
-	DB_PASSWORD = getpass.getpass("MongoDB password:")
+	DB_USERNAME = input("MongoDB username: ")
+	DB_PASSWORD = getpass.getpass("MongoDB password: ")
 except:
 	print("\nPlease complete the configuration")
 	exit(-1)

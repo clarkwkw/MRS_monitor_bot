@@ -11,7 +11,6 @@ def setup():
 		mongo_client = MongoClient("mongodb://%s/MKTG-studies"%config.DB_HOST, 
 			username = config.DB_USERNAME if len(config.DB_USERNAME) > 0 else None, 
 			password = config.DB_PASSWORD if len(config.DB_PASSWORD) > 0 else None)
-
 		mongo_client["MKTG-studies"]["Studies"].find_one()
 		mongo_client["MKTG-studies"]["Subscribed"].find_one()
 	except Exception as e:
