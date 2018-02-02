@@ -15,7 +15,7 @@ updater = Updater(token = config.TG_TOKEN)
 for command, handler in HANDLERS.items():
 	updater.dispatcher.add_handler(CommandHandler(command, handler))
 
-crawler_thread = threading.Thread(target = crawler.crawler_management, kwargs = {"bot": updater.bot}).run()
+crawler_thread = threading.Thread(target = crawler.crawler_management, kwargs = {"bot": updater.bot}).start()
 updater.start_polling()
 updater.idle()
 config.log("Shutting down..")
