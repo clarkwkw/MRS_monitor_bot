@@ -3,6 +3,15 @@ from urllib import request, parse
 import re
 import config, tgbot
 import traceback
+import time
+from functools import partial
+import schedule
+
+def crawler_management(bot):
+	schedule.every(config.UPDATE_FREQ).minutes.do(partial(crawl, bot = bot)).run()
+	while not config.EXIT_FLAG:
+		schedule.run_pending()
+		time.sleep(1)
 
 def crawl(bot):
 	try:
@@ -40,6 +49,7 @@ def crawl(bot):
 			config.log("Pushing notification")
 			tgbot.push_notification(bot, noti_content)
 	except SystemExit:
+		config.EXIT_FLAG = True
 		exit(-1)
 	except:
 		print(traceback.format_exc())
