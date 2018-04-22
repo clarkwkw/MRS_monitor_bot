@@ -10,7 +10,7 @@ try:
 	TG_TOKEN = input("Telegram bot token: ")
 	DB_HOST = "localhost:27017"
 	DB_USERNAME = input("MongoDB username: ")
-	DB_PASSWORD = getpass.getpass("MongoDB password: ") if not args.stdi else input("MongoDB assword: ")
+	DB_PASSWORD = getpass.getpass("MongoDB password: ") if not args.stdi else input("MongoDB password: ")
 	print()
 except:
 	print("\nPlease complete the configuration")
